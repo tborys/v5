@@ -1,3 +1,5 @@
+import validate from './validate';
+
 const DEFAULT_HOSTNAME = '127.0.0.1'
 const DEFAULT_PORT = 4444
 
@@ -73,41 +75,6 @@ export function initialisePlugin (name, type) {
     }
 }
 
-export function validateConfig (defaults, options) {
-    const params = {}
-
-    for (const [name, expectedOption] of Object.entries(defaults)) {
-        /**
-         * check if options is given
-         */
-        if (typeof options[name] === 'undefined' && !expectedOption.default && expectedOption.required) {
-            throw new Error(`Required option "${name}" is missing`)
-        }
-
-        if (typeof options[name] === 'undefined' && expectedOption.default) {
-            params[name] = expectedOption.default
-        }
-
-        if (typeof options[name] !== 'undefined') {
-            if (typeof expectedOption.type === 'string' && typeof options[name] !== expectedOption.type) {
-                throw new Error(`Expected option "${name}" to be type of ${expectedOption.type} but was ${typeof options[name]}`)
-            }
-
-            if (typeof expectedOption.type === 'function') {
-                try {
-                    expectedOption.type(options[name])
-                } catch (e) {
-                    throw new Error(`Type check for option "${name}" failed: ${e.message}`)
-                }
-            }
-
-            if (expectedOption.match && !options[name].match(expectedOption.match)) {
-                throw new Error(`Option "${name}" doesn't match expected values: ${expectedOption.match}`)
-            }
-
-            params[name] = options[name]
-        }
-    }
-
-    return params
-}
+export function validateConfig(userConfig, configOptions) {
+    return validate(userConfig, configOptions);
+};

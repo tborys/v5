@@ -1,13 +1,25 @@
 import { validateConfig } from '../src/utils'
 
+import errorMessage  from '../src/validate/errorMessage';
+import validateCondition  from '../src/validate/validateCondition';
+
+const { configByUser } = require('./__fixtures__/webdriver.conf');
+
+const INVALID_CONFIG = { protocol: 'http', port: 4, logLevel: 'debug' };
+
+const DEFAULT_TEST_TIMEOUT = 0;
+
+const configOptions = {
+        exampleConfig: configByUser,
+        condition: validateCondition,
+        error: errorMessage
+};
+
 describe('validateConfig', () => {
-    it('should throw if required config is missing', () => {
-        expect(() => validateConfig({
-            foobar: {
-                type: 'string',
-                required: true
-            }
-        }, {})).toThrowError('Required option "foobar" is missing')
+    it.only('should throw if required config is missing', () => {
+        const INVALID_CONFIG = { protocol: 'http', port: 4, logLevel: 'debug' };
+
+        expect(() => validateConfig(INVALID_CONFIG, configOptions)).toThrow()
     })
 
     it('should not throw if required config is missing but default is defined', () => {

@@ -45,7 +45,7 @@
   },
   "jest": {
     "testMatch": [
-      "/**/wdio-config/tests/myconfig.test.js"
+      "/**/wdio-config/tests/validateConfig.test.js"
     ],
     "coverageDirectory": "./coverage/",
     "collectCoverage": true,
