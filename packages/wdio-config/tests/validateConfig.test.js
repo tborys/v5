@@ -7,18 +7,14 @@ const { configByUser } = require('./__fixtures__/webdriver.conf');
 
 const INVALID_CONFIG = { protocol: 'http', port: 4, logLevel: 'debug' };
 
-const DEFAULT_TEST_TIMEOUT = 0;
-
 const configOptions = {
-        exampleConfig: configByUser,
-        condition: validateCondition,
-        error: errorMessage
+    exampleConfig: configByUser,
+    condition: validateCondition,
+    error: errorMessage
 };
 
 describe('validateConfig', () => {
     it.only('should throw if required config is missing', () => {
-        const INVALID_CONFIG = { protocol: 'http', port: 4, logLevel: 'debug' };
-
         expect(() => validateConfig(INVALID_CONFIG, configOptions)).toThrow()
     })
 

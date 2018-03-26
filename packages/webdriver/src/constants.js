@@ -120,7 +120,9 @@ const DEFAULTS = {
     protocol: {
         type: 'string',
         default: 'http',
-        match: /(http|https)/
+        match: /(^|\W)(http|https)($|\W)/,
+        options: 'http/https',
+        errorMessage: 'must have value'
     },
     /**
      * hostname of automation driver
@@ -162,7 +164,7 @@ const DEFAULTS = {
     logLevel: {
         type: 'string',
         default: 'silent',
-        match: /(trace|debug|info|warn|error)/
+        match: /(^|\W)(silent|trace|debug|info|warn|error)($|\W)/
     },
     /**
      * logOutput as file path or writeable stream

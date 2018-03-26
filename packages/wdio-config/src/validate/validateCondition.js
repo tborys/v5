@@ -1,12 +1,13 @@
+import { DEFAULTS } from '../../../webdriver/src/constants';
+
 const validateCondition = (value, defaultValue) => {
-    console.log('Spit out values', defaultValue, value)
-    if (defaultValue === 'http') {
-        return value.match(/(^|\W)(http|https)($|\W)/);
-    } else if (defaultValue === 'silent') {
-        return value.match(/(^|\W)(silent|trace|debug|info|warn|error)($|\W)/);
-    } else {
-        return value === null || value === undefined || toString.call(value) === toString.call(defaultValue);
-    }  
+    let result = Object.keys(DEFAULTS).filter((key) => {
+        const configObject = DEFAULTS[key];
+
+        return defaultValue === configObject.default && configObject.match && value.match(configObject.match);
+    });
+
+    return result.length > 0;
 };
 
 export default validateCondition;

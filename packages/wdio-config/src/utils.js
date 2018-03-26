@@ -77,4 +77,4 @@ export function initialisePlugin (name, type) {
 
 export function validateConfig(userConfig, configOptions) {
     return validate(userConfig, configOptions);
-};
+}

@@ -1,5 +1,3 @@
-import errorMessage from './errorMessage';
-import validateCondition from './validateCondition';
 import { validate } from 'jest-validate';
 
 export default (userConfig, validOptions) => {
