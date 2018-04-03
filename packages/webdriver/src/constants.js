@@ -149,13 +149,16 @@ const DEFAULTS = {
      * A key-value store of query parameters to be added to every selenium request
      */
     queryParams: {
-        type: 'object'
+        type: 'object',
+        default: {},
     },
     /**
      * capability of WebDriver session
      */
     capabilities: {
         type: 'object',
+        match: { },//object must be different then null,
+        errorMessage: 'must have value',
         required: true
     },
     /**
@@ -164,7 +167,9 @@ const DEFAULTS = {
     logLevel: {
         type: 'string',
         default: 'silent',
-        match: /(^|\W)(silent|trace|debug|info|warn|error)($|\W)/
+        match: /(^|\W)(silent|trace|debug|info|warn|error)($|\W)/,
+        options: 'silent,trace,debug,info,warn,error',
+        errorMessage: 'must have value'
     },
     /**
      * logOutput as file path or writeable stream

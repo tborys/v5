@@ -34,4 +34,19 @@ describe('errorMessage', () => {
             expect(() => errorMessage(option, received, defaultValue, options)).toThrowError(/array/);
         });
     });
+
+    // This scenario should probably live in validate test
+    describe('when config is missing', () => {
+        // Missing received value (or config)
+        describe('and option has a default value', () => {
+            // default value in JSON schema
+            it('should not throw an errortake the default value', () => {
+                
+            });
+        });
+    });
+
+    //should not throw if required config is missing but default is defined
+    // should check for types as function?
+    // object checks
 });
