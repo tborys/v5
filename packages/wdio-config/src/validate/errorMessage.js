@@ -1,5 +1,3 @@
-import { DEFAULTS } from '../../../webdriver/src/constants';
-
 import chalk from 'chalk';
 import getType from 'jest-get-type';
 import { format, ValidationError, ERROR } from 'jest-validate';
@@ -8,9 +6,10 @@ const errorMessage = (
     option,
     received,
     defaultValue,
-    options,
+    options, 
+    schema
 ) => {
-    const { errorMessage, type, options: opts } = DEFAULTS[option];
+    const { errorMessage, type, options: opts } = schema[option];
     const { comment, title: { error } } = options;
 
     const message = `  Option ${ chalk.bold(`"${ option }"`)} ${ errorMessage }

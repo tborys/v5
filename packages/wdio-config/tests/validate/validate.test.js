@@ -1,11 +1,17 @@
 import validate from '../../src/validate';
+import { DEFAULTS } from '../../../webdriver/src/constants';
 
-import { DEFAULTS } from 'webdriver';
+const INVALID_CONFIG = { protocol: 'http', port: 4, logLevel: 'debug' };
 
-describe('validate', () => {
-    it('should return `something`', () => {
-        console.log('', DEFAULTS);
-        const userConfig = { protocol: 'x' };
-        console.log(validate(userConfig, DEFAULTS));
+const configOptions = {
+    exampleConfig: DEFAULTS
+};
+
+describe('validate method', () => {
+    it('should implement custom errorMessage', () => {
+        const userConfig = { protocol: 'https' };
+        const result = validate(userConfig, configOptions);
+
+        expect(result).toBeTruthy;
     });
 });

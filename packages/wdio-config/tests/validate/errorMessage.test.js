@@ -1,4 +1,5 @@
 import errorMessage from '../../src/validate/errorMessage';
+import { DEFAULTS } from '../../../webdriver/src/constants';
 
 describe('errorMessage', () => {
     describe('when passing an error that is an invalid value', () => {
@@ -13,8 +14,8 @@ describe('errorMessage', () => {
         };
 
         it('should throw a ValidationError with the correct message', () => {
-            expect(() => errorMessage(option, received, defaultValue, options)).toThrowError(options.comment);
-            expect(() => errorMessage(option, received, defaultValue, options)).toThrowError(options.title.error);
+            expect(() => errorMessage(option, received, defaultValue, options, DEFAULTS)).toThrowError(options.comment);
+            expect(() => errorMessage(option, received, defaultValue, options, DEFAULTS)).toThrowError(options.title.error);
         });
     });
 
@@ -30,8 +31,8 @@ describe('errorMessage', () => {
         };
 
         it('should throw a ValidationError with the correct message', () => {
-            expect(() => errorMessage(option, received, defaultValue, options)).toThrowError(/string/);
-            expect(() => errorMessage(option, received, defaultValue, options)).toThrowError(/array/);
+            expect(() => errorMessage(option, received, defaultValue, options, DEFAULTS)).toThrowError(/string/);
+            expect(() => errorMessage(option, received, defaultValue, options, DEFAULTS)).toThrowError(/array/);
         });
     });
 
